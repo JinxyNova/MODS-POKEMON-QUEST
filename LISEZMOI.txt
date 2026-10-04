@@ -1,0 +1,81 @@
+COBBLEVERSE - 150 QUETES + ARENES (mod Fabric 1.21.1, v9.4)
+
+OBTENIR LE .JAR (2 facons)
+A) GitHub (le plus simple, rien a installer) :
+   1. Cree un depot GitHub vide, envoie-y tout le contenu de ce dossier (garde .github/).
+   2. Onglet "Actions" > "build" > attends la coche verte > en bas, telecharge "cobbleverse-quetes-mod".
+   3. Dans le zip telecharge : cobbleverse-quetes-9.4.0.jar
+B) Sur ton PC : installe Java 21 + Gradle 8.10, puis dans ce dossier : gradle build
+   Le jar est dans build/libs/ (celui sans "-sources").
+
+INSTALLATION
+- Mets le .jar dans mods/ (serveur, ou solo). Fabric API requis (deja la avec Cobblemon).
+- Supprime l'ancien datapack ou l'ancien mod v7 des quetes.
+- Sur serveur : seul le serveur a besoin du mod, les joueurs gardent un client normal.
+
+COMMANDES (Tab complete comme les commandes Minecraft, pour tous les joueurs)
+/quetes                       menu en coffre : categories, pages, details
+/quetes progression           progression par categorie
+/quetes restantes [categorie] quetes pas encore faites (Tab : categories)
+/quetes accomplies [categorie]
+/quetes info <n>              details d'une quete
+/quetes valider <n>           validation a la main (Tab : seulement les quetes pas faites, avec le titre)
+/quetes id                    affiche l'id de l'objet en main, la dimension, le biome et les structures (depannage)
+/quetes rattrapage            valide ce que tu avais deja fait avant l'installation
+Dans le menu : clic = details, Maj+clic = valider a la main.
+Les anciennes commandes /trigger quetes_... marchent toujours.
+
+QUETES BONUS (101 a 150, categorie "Defis bonus", /quetes restantes bonus) :
+50 defis a detection automatique (obtenir un objet : diamant, balise, Hyper Balls, Potions...).
+17 quetes 1 etoile, 17 quetes 2 etoiles, 16 quetes 3 etoiles. Si rien ne se passe : /quetes valider <n>.
+
+TOUT EST AUTOMATIQUE (150/150)
+- 8 quetes Cobblemon refaites avec les vrais declencheurs : #26 capture 25 Pokemon, #48 gagne 5 combats de dresseur,
+  #83 monte un Pokemon de niveau, #87 capture 6 types (feu, eau, plante, electrik, normal, psy), #88 niveau 50,
+  #93/#95/#96 evolue 3/6/10 Pokemon, #54 obtiens une carte.
+- Le mod detecte aussi (verification chaque seconde) : Trainer Card (#2), livre de guide (#3), badges et trophees
+  Cobbleverse Johto/Hoenn/Sinnoh (#39-47, ex. cobbleversebadges:johto_zephyr_badge), 3 biomes visites (#50),
+  Pokenav (#55), waystone activee (#56), structure d'arene (#57) et Sanctuaire (#76), objet tenu donne (#82),
+  Multi Exp (#85), 26 vitamines identiques (#86), Campfire Pot utilisee (#97), Poke Bait (#99).
+- Si une quete ne se declenche pas, /quetes valider <n> reste disponible en secours.
+
+RECOMPENSES : 1 etoile = 1 Super Bonbon, 2 etoiles = 2, 3 etoiles = 3 (+ l'objet de la quete).
+
+10 ARENES DE COMBAT (v9, 5 de plus en v9.4, necessite Radical Cobblemon Trainers, deja dans Cobbleverse)
+- Bosquet : Sylvia, niveau 20. Forge d'Ardent : Ferrand, niveau 40.
+  Cratere de Magma : Magnar, niveau 60 (Groudon, Heatran, Excadrill, Charizard, Rhyperior, Magmortar).
+  Citadelle du Dragon : Valdrak, niveau 80. Sanctuaire des Legendes : Eldrin, niveau 100 (6 legendaires).
+- v9.3 : UNE arene est posee pres de CHAQUE village (a cote, jamais dedans), entree tournee vers le village, avec un chemin d'acces.
+  Le type d'arene depend du biome (plus le niveau est haut, plus l'arene est rare). Ca marche aussi pour les villages deja generes
+  (l'arene se pose quand le village est charge). Terrain aplani, arbres coupes, pas d'arene dans l'eau.
+- Le dresseur apparait quand un joueur s'approche (64 blocs). Liste des arenes : /arenes list, aller a l'une : /arenes tp <numero>.
+- Commandes /arenes (OP) : list | diag | place <bosquet|forge|cratere|citadelle|sanctuaire> (pose une arene devant toi) | tp <numero>
+- Config : config/cobbleverse_arenes.json (enabled, minMarginFromVillage, keywords, excludeKeywords, extraStructureIds).
+  Si les villages d'un mod ne sont pas detectes, ajoute leur identifiant dans extraStructureIds (ex. "modid:mon_village").
+- Sauvegarde : <monde>/cobbleverse_arenes.json (villages deja traites + arenes posees). Le supprimer = repose des arenes.
+- Un seul exemplaire de chaque dresseur par monde (regle de RCT). Rematchs illimites, pas de spawn naturel.
+- Non teste en jeu : si un dresseur n'apparait pas, regarde les logs (capacite ou objet inconnu) et dis-le moi.
+
+RECOMPENSES DES ARENES (v9.2) : donnees par les dresseurs eux-memes (tables de butin Radical Cobblemon Trainers)
+- 1re victoire = GROS LOT garanti, chaque victoire = lot de base, + butin Pokeball aleatoire de plus en plus rare.
+- Niv. 20 Sylvia : 5 Super Bonbons, 10 Ultra Balls, 3 diamants, 2 Bonbons XL, 1 Rappel Max.
+- Niv. 40 Ferrand : 15 Super Bonbons, 24 Ultra Balls, 10 diamants, 16 emeraudes, 8 Bonbons XL, 3 Rappels Max, 3 Guerisons totales, 1 Capsule Talent.
+- Niv. 80 Valdrak : 40 Super Bonbons, 1 Master Ball, 32 diamants, 3 lingots de netherite, 24 Bonbons XL, 2 Capsules Talent, 1 Patch Talent, 3 PP Max, 2 pommes d'or enchantees...
+- Niv. 100 Eldrin : 99 Super Bonbons, 3 Master Balls, 64 diamants, 8 netherite, 64 Bonbons XL, 5 Capsules Talent, 3 Patchs Talent, 8 PP Max, 2 etoiles du Nether, 1 totem + objets tenus rares.
+- Non teste en jeu : si un identifiant d'objet est inconnu, le log le signale et la recompense de ce dresseur peut etre vide.
+- Niv. 60 Magnar : 25 Super Bonbons, 32 Ultra Balls, 20 diamants, 1 netherite, 16 Bonbons XL, 4 Rappels Max, 5 Guerisons totales, 1 Capsule Talent, 1 PP Max, 1 pomme d'or enchantee.
+
+5 NOUVELLES ARENES (v9.4) - vrais combos competitifs (natures, EV/IV 31, objets, capacites), recompenses plus grosses
+- Lagon de Cristal : Maelys, niveau 30 (Eau/Glace : Starmie, Lapras, Cloyster, Politoed, Gyarados, Mamoswine).
+- Pic de la Tempete : Aelis, niveau 50 (Electrik/Vol : Togekiss, Jolteon, Electivire, Skarmory, Zapdos, Noivern).
+- Manoir Nocturne : Noctis, niveau 70 (Spectre/Tenebres : Gengar, Hydreigon, Weavile, Chandelure, Mimikyu, Darkrai).
+- Forteresse d'Acier : Brannoc, niveau 90 (Combat/Acier : Lucario, Scizor, Conkeldurr, Ferrothorn, Terrakion, Cobalion).
+- Sommet des Mythes : Aurelion, niveau 100 (Psy/Fee : Mew, Jirachi, Xerneas, Latios, Gardevoir, Lunala).
+- Total : 10 arenes / 10 dresseurs (un exemplaire de chaque par monde, regle RCT). /arenes place <lagon|pic|manoir|forteresse|sommet>.
+- Recompenses (1re victoire garantie, puis lot de base a chaque victoire + butin Pokeball aleatoire de plus en plus rare) :
+  Maelys : 12 Super Bonbons, 20 Ultra Balls, 8 diamants, 16 emeraudes, 6 Bonbons XL, 3 Rappels Max, 1 Capsule Talent, 2 Guerisons totales.
+  Aelis : 22 Super Bonbons, 32 Ultra Balls, 14 diamants, 24 emeraudes, 12 Bonbons XL, 4 Rappels Max, 2 Capsules Talent, 1 netherite, Restes.
+  Noctis : 35 Super Bonbons, 48 Ultra Balls, 24 diamants, 3 netherite, 24 Bonbons XL, 6 Rappels Max, 1 Patch Talent, 3 PP Max, 2 pommes d'or enchantees, Orbe Vie.
+  Brannoc : 50 Super Bonbons, 2 Master Balls, 40 diamants, 5 netherite, 40 Bonbons XL, 8 Rappels Max, 2 Patchs Talent, 5 PP Max, 1 etoile du Nether, Bandeau Choix.
+  Aurelion : 99 Super Bonbons, 5 Master Balls, 64 diamants, 12 netherite, 64 Bonbons XL, 16 Rappels Max, 5 Patchs Talent, 12 PP Max, 4 etoiles du Nether, 2 totems, Lunettes Choix + Orbe Vie + Restes.
+- Chaque nouvelle arene reutilise le plan d'une ancienne (meme taille) avec d'autres materiaux. Non teste en jeu : si un objet ou une capacite est inconnu, le log le signale.
